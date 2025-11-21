@@ -1,36 +1,29 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Briefcase, GraduationCap, Cpu, Award } from 'lucide-react';
+import { Briefcase, GraduationCap, Cpu, FileText, Award } from 'lucide-react';
 
 const experiences = [
   {
-    title: "Undergraduate Research Intern",
-    company: "Penn State University",
-    period: "Oct 2025 - Present",
-    description: "Conducting research on technology-enhanced learning using large educational datasets.",
-    tags: ["Python", "Data Analysis", "Research"]
-  },
-  {
-    title: "Campus Ambassador",
-    company: "IBM",
-    period: "Aug 2025 - Present",
-    description: "Representing IBM technologies on campus and fostering a tech community.",
-    tags: ["Leadership", "Community", "Tech"]
+    title: "Undergraduate Research Assistant",
+    company: "Penn State College of IST",
+    period: "Apr 2025 - July 2025",
+    description: "Data cleaning and visualization using Pandas and Matplotlib to support research on technology-enhanced learning.",
+    tags: ["Pandas", "Matplotlib", "Data Viz"]
   },
   {
     title: "CMPSC Grader",
     company: "Penn State College of Engineering",
     period: "Aug 2025 - Present",
-    description: "Grading assignments for 400+ students, providing feedback on Python code and data structures.",
+    description: "Grade weekly programming assignments for 400+ students, providing feedback on Python code and data structures.",
     tags: ["Teaching", "Python", "Debugging"]
   },
   {
-    title: "Undergraduate Research Assistant",
-    company: "Penn State College of IST",
-    period: "Apr 2025 - July 2025",
-    description: "Data cleaning and visualization using Pandas and Matplotlib to support research KPIs.",
-    tags: ["Pandas", "Matplotlib", "Data Viz"]
+    title: "Undergraduate Research Intern",
+    company: "Penn State University",
+    period: "Oct 2025 - Present",
+    description: "Researching AI/ML applications. Leveraging large educational datasets to drive insights.",
+    tags: ["Python", "AI/ML", "Research"]
   }
 ];
 
@@ -38,6 +31,14 @@ const skills = [
   "Python", "Java", "C++", "HTML/CSS", "JavaScript", "React", "Next.js",
   "Tailwind CSS", "Git", "SQL", "Data Structures", "Algorithms",
   "Machine Learning", "Artificial Intelligence"
+];
+
+const certifications = [
+    "AI For Everyone",
+    "AI Foundations for Everyone",
+    "Programming for Everybody (Python)",
+    "Intro to Front-End Development",
+    "What is Data Science?"
 ];
 
 export default function BentoGrid() {
@@ -65,7 +66,7 @@ export default function BentoGrid() {
           </motion.div>
 
           {/* Experience Column */}
-          <div className="md:col-span-2 grid grid-cols-1 gap-6">
+          <div className="md:col-span-2 flex flex-col gap-6">
             {experiences.map((exp, index) => (
                 <motion.div
                     key={index}
@@ -98,6 +99,21 @@ export default function BentoGrid() {
                     </div>
                 </motion.div>
             ))}
+
+            {/* View Full Archive Button */}
+            <motion.a
+                href="/Resume.pdf"
+                download
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="group flex items-center justify-between p-6 border border-white/10 bg-white/5 hover:bg-white/10 transition-all cursor-pointer"
+            >
+                <span className="font-mono text-sm text-gray-300 group-hover:text-white transition-colors">
+                    VIEW_FULL_ARCHIVE
+                </span>
+                <FileText className="text-gray-400 group-hover:text-white transition-colors" size={20} />
+            </motion.a>
           </div>
 
           {/* Sidebar Column: Education & Skills */}
@@ -142,28 +158,25 @@ export default function BentoGrid() {
                 </div>
              </motion.div>
 
-             {/* Certifications/Awards */}
+             {/* Certifications */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="p-6 border border-white/10 bg-black/40 backdrop-blur-sm relative"
+                className="p-6 border border-white/10 bg-black/40 backdrop-blur-sm relative overflow-hidden"
              >
                  <div className="flex items-center gap-2 mb-4 text-cyber-accent">
                     <Award size={20} />
-                    <h3 className="font-bold font-mono">AWARDS</h3>
+                    <h3 className="font-bold font-mono">CERTIFICATIONS</h3>
                 </div>
-                <ul className="space-y-3">
-                    <li className="text-sm text-gray-300 border-l border-white/20 pl-3">
-                        <span className="block text-white font-bold">Stealth Supporter Award</span>
-                        <span className="text-xs text-gray-500">Penn State NSO</span>
-                    </li>
-                     <li className="text-sm text-gray-300 border-l border-white/20 pl-3">
-                        <span className="block text-white font-bold">Ikshara Foundation President</span>
-                        <span className="text-xs text-gray-500">Leadership Excellence</span>
-                    </li>
-                </ul>
+                <div className="flex flex-col gap-2">
+                    {certifications.map((cert, index) => (
+                         <div key={index} className="px-3 py-2 bg-white/5 border border-white/10 text-xs text-gray-300 font-mono rounded-sm whitespace-nowrap overflow-hidden text-ellipsis">
+                            {cert}
+                        </div>
+                    ))}
+                </div>
              </motion.div>
 
           </div>
