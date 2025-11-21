@@ -13,12 +13,25 @@ export default function ParticleBackground() {
     if (!ctx) return;
 
     let animationFrameId: number;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let particles: any[] = []; // Simplified type to avoid class definition issues in hook
+
+    interface Particle {
+        x: number;
+        y: number;
+        baseX: number;
+        baseY: number;
+        size: number;
+        speedX: number;
+        speedY: number;
+        density: number;
+        draw: () => void;
+        update: () => void;
+    }
+
+    let particles: Particle[] = [];
     const mouse = { x: 0, y: 0, isActive: false };
 
     // Use a functional approach instead of class inside useEffect to please the linter
-    const createParticle = (x: number, y: number) => {
+    const createParticle = (x: number, y: number): Particle => {
         return {
             x,
             y,
