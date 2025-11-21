@@ -64,7 +64,7 @@ export default function Hero() {
                 <div className="absolute inset-0 border border-cyber-glass-border rounded-full animate-spin-slow"></div>
                 <div className="absolute -inset-4 border border-dashed border-gray-800 rounded-full animate-reverse-spin"></div>
 
-                <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/10 grayscale contrast-125 brightness-90 hover:grayscale-0 transition-all duration-700">
+                <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/10 grayscale contrast-150 hover:grayscale-0 transition-all duration-700">
                     <Image
                         src="/profile.jpg"
                         alt="Rudra Desai"
