@@ -27,17 +27,17 @@ const research = [
 
 export default function Research() {
     return (
-        <section className="py-24 px-4 md:px-8 max-w-7xl mx-auto">
+        <section className="py-12 md:py-24 px-4 md:px-8 max-w-7xl mx-auto">
             <motion.h2
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="text-3xl font-bold mb-12 text-primary flex items-center gap-4"
+                className="text-2xl md:text-3xl font-bold mb-8 md:mb-12 text-primary flex items-center gap-4"
             >
                 Research_Log <span className="text-xs font-mono text-muted-foreground mt-2">ACTIVE_PROTOCOLS</span>
             </motion.h2>
 
-            <div className="space-y-8">
+            <div className="space-y-6 md:space-y-8">
                 {research.map((item, i) => (
                     <motion.div
                         key={i}
@@ -45,14 +45,14 @@ export default function Research() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.2 }}
-                        className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/30 transition-all"
+                        className="p-6 md:p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/30 transition-all"
                     >
                         <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
                             <div>
-                                <h3 className="text-xl font-bold text-foreground">{item.role}</h3>
+                                <h3 className="text-lg md:text-xl font-bold text-foreground">{item.role}</h3>
                                 <p className="text-primary font-mono text-sm">{item.lab}</p>
                             </div>
-                            <div className="text-right md:text-left">
+                            <div className="text-left md:text-right">
                                 <p className="text-sm text-muted-foreground">{item.institution}</p>
                                 <p className="text-xs font-mono text-muted-foreground/80 bg-white/5 inline-block px-2 py-1 rounded mt-1">{item.period}</p>
                             </div>
