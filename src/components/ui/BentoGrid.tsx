@@ -5,31 +5,34 @@ import { cn } from "@/lib/utils";
 
 const experiences = [
     {
-        title: "Undergraduate Research Intern",
-        company: "Penn State University",
-        period: "Oct 2025 - Present",
-        desc: "Researching AI/ML solutions.",
-        type: "experience",
-    },
-    {
         title: "CMPSC Grader",
         company: "Penn State College of Engineering",
         period: "Aug 2025 - Present",
-        desc: "Grading for 400+ students in Intro to CS.",
+        desc: "Evaluating core programming concepts and providing feedback for 400+ students.",
         type: "experience",
     },
     {
-        title: "IBM Campus Ambassador",
-        company: "IBM",
+        title: "Math Grader",
+        company: "Penn State Eberly College of Science",
         period: "Aug 2025 - Present",
-        desc: "Representing IBM tech on campus.",
+        desc: "Grading assignments and maintaining academic integrity.",
+        type: "experience",
+    },
+    {
+        title: "Web Developer",
+        company: "School of Engineering Design and Innovation, Penn State",
+        period: "Nov 2025 - Present",
+        desc: "Developing web infrastructure for an NSF-funded initiative, ensuring WCAG compliance and high performance.",
         type: "experience",
     },
 ];
 
-const skills = [
-    "Python", "Data Structures", "AI/ML", "React", "Next.js", "Tailwind CSS", "Java", "C++"
-];
+const skills = {
+    "Languages": ["Python", "Java", "JavaScript (ES6+)", "HTML5", "CSS3", "SQL"],
+    "Frameworks": ["React.js", "Pandas", "Matplotlib", "Vite", "NumPy"],
+    "Tools": ["Git", "GitHub", "Firebase", "VS Code", "IBM Z Xplore"],
+    "Design": ["Data Analysis", "Qualitative Research", "Adobe Creative Cloud", "Excel"]
+};
 
 export default function BentoGrid() {
     return (
@@ -59,11 +62,18 @@ export default function BentoGrid() {
                 >
                     <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-primary to-secondary opacity-20" />
                     <h3 className="text-xl font-bold mb-6">Tech_Stack</h3>
-                    <div className="flex flex-wrap gap-2">
-                        {skills.map((skill, i) => (
-                            <span key={i} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono hover:bg-primary/20 hover:border-primary/50 transition-all cursor-default">
-                                {skill}
-                            </span>
+                    <div className="space-y-6">
+                        {Object.entries(skills).map(([category, items]) => (
+                            <div key={category}>
+                                <h4 className="text-xs font-mono text-primary mb-2 uppercase tracking-wider">{category}</h4>
+                                <div className="flex flex-wrap gap-2">
+                                    {items.map((skill, i) => (
+                                        <span key={i} className="px-2 py-1 bg-white/5 border border-white/10 rounded text-[10px] font-mono hover:bg-primary/20 transition-colors cursor-default">
+                                            {skill}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </motion.div>

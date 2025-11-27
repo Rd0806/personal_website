@@ -15,8 +15,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rudra Desai | Creative Technologist",
-  description: "Engineering the future with AI & Algorithms. Cyberpunk Minimalism meets High-End Engineering.",
+  title: "Rudra Desai | AI & Algorithms",
+  description: "Personal portfolio of Rudra Desai, a software engineer specializing in AI, algorithms, and high-performance web development.",
 };
 
 export default function RootLayout({
