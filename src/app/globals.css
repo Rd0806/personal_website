@@ -1,45 +1,149 @@
 @import "tailwindcss";
 
+/* ──────────────────────────────────────────────────────────────────────────
+   DESIGN TOKENS
+   A dark-mode-first, obsidian system. One precise accent: data-stream phosphor.
+   Type: Fraunces (editorial serif display) × JetBrains Mono (structural mono).
+   ────────────────────────────────────────────────────────────────────────── */
 @theme {
-  --color-background: #030303;
-  --color-foreground: #ededed;
-  
-  --color-primary: #00f0ff;
-  --color-secondary: #7000ff;
-  --color-accent: #ff003c;
-  
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-jetbrains-mono);
-  
-  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --color-obsidian: #0b0b0c;
+  --color-obsidian-raised: #111113;
+  --color-bone: #ecebe4;
+  --color-bone-dim: #a6a59d;
+  --color-bone-faint: #6c6b65;
+  --color-phosphor: #c6ff3d;
+  --color-phosphor-deep: #8fbf1f;
+
+  --color-background: var(--color-obsidian);
+  --color-foreground: var(--color-bone);
+
+  --color-hairline: rgba(236, 235, 228, 0.12);
+  --color-hairline-strong: rgba(236, 235, 228, 0.24);
+
+  --font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SFMono-Regular", monospace;
 }
 
 :root {
-  --background: #030303;
-  --foreground: #ededed;
+  --background: #0b0b0c;
+  --foreground: #ecebe4;
+  --gutter: clamp(1.25rem, 5vw, 5rem);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis owns scrolling */
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-feature-settings: "ss01", "cv01";
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Custom Scrollbar */
+/* Faint editorial ledger: vertical structure guides, extremely subtle. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image: repeating-linear-gradient(
+    to right,
+    transparent 0,
+    transparent calc(20% - 1px),
+    var(--color-hairline) calc(20% - 1px),
+    var(--color-hairline) 20%
+  );
+  opacity: 0.35;
+  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+}
+
+/* Film grain overlay for depth — not a flat color field. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.045;
+  mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection {
+  background: var(--color-phosphor);
+  color: #0b0b0c;
+}
+
+/* Keyboard focus — visible, accent, never removed. */
+:focus-visible {
+  outline: 2px solid var(--color-phosphor);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Scrollbar tuned to the palette (Lenis still drives the motion). */
 ::-webkit-scrollbar {
   width: 8px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #0b0b0c;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
+  background: #26261f;
+  border: 2px solid #0b0b0c;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-phosphor-deep);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+/* Skip link — first stop for screen-reader / keyboard users. */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-phosphor);
+  color: #0b0b0c;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: translateY(-120%);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Display serif utility — editorial headlines. */
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+/* Honour reduced-motion globally for CSS-driven transitions. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

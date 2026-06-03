@@ -1,19 +1,22 @@
-import Hero from "@/components/ui/Hero";
-import BentoGrid from "@/components/ui/BentoGrid";
-import Research from "@/components/ui/Research";
-import Projects from "@/components/ui/Projects";
-import Education from "@/components/ui/Education";
-import Footer from "@/components/ui/Footer";
+import Nav from "@/components/layout/Nav";
+import ScrollProgress from "@/components/layout/ScrollProgress";
+import Monolith from "@/components/sections/Monolith";
+import LatentSpaces from "@/components/sections/LatentSpaces";
+import Toolkit from "@/components/sections/Toolkit";
+import Colophon from "@/components/sections/Colophon";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground selection:bg-primary/30">
-      <Hero />
-      <BentoGrid />
-      <Research />
-      <Projects />
-      <Education />
-      <Footer />
-    </main>
+    <>
+      <ScrollProgress />
+      <Nav />
+      {/* The 2D editorial layer sits above the fixed 3D garden (z-0). */}
+      <main id="main" className="relative z-10">
+        <Monolith />
+        <LatentSpaces />
+        <Toolkit />
+        <Colophon />
+      </main>
+    </>
   );
 }
